@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack | Monitor & Restore</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> EcoTrack</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#aqi-map">Live Map</a></li>
+                <li><a href="#calculator">Calculator</a></li>
+                <!-- <li><a href="#contact" class="btn-donate">Join Us</a></li> -->
+                 <li><a href="about-dev.html">About Dev</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="container hero-content hidden">
+            <h1 class="typing-text">Breathe Cleaner. Live Greener.</h1>
+            <p>Monitor real-time air quality and track your environmental impact.</p>
+            
+            <div class="search-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="city-select" onchange="fetchCityAQI()">
+                    <option value="delhi">New Delhi, DL</option>
+                    <option value="mumbai">Mumbai, MH</option>
+                    <option value="bengaluru">Bengaluru, KA</option>
+                    <option value="chennai">Chennai, TN</option>
+                    <option value="kolkata">Kolkata, WB</option>
+                    <option value="hyderabad">Hyderabad, TG</option>
+                    <option value="pune">Pune, MH</option>
+                    <option value="ahmedabad">Ahmedabad, GJ</option>
+                    <option value="jaipur">Jaipur, RJ</option>
+                    <option value="lucknow">Lucknow, UP</option>
+                </select>
+            </div>
+
+            <div class="aqi-widget" id="aqi-card" data-tilt data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="aqi-header">
+                    <span id="location-display">New Delhi, DL</span>
+                    <span class="live-badge">LIVE</span>
+                </div>
+                <div class="aqi-score" id="aqi-display">--</div>
+                <div class="aqi-status" id="aqi-status">Loading...</div>
+                <p class="aqi-desc">Real-time pollutant tracking active.</p>
+            </div>
+
+            <div class="pollutant-grid hidden" id="pollutant-details">
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>PM 2.5</h4> <span id="pm25-val">--</span> <small>µg/m³</small>
+                </div>
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>PM 10</h4> <span id="pm10-val">--</span> <small>µg/m³</small>
+                </div>
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>CO</h4> <span id="co-val">--</span> <small>mg/m³</small>
+                </div>
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>NO2</h4> <span id="no2-val">--</span> <small>ppb</small>
+                </div>
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>SO2</h4> <span id="so2-val">--</span> <small>ppb</small>
+                </div>
+                <div class="gas-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <h4>O3</h4> <span id="o3-val">--</span> <small>ppb</small>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding bg-light">
+        <div class="container split-layout">
+            <div class="text-content hidden">
+                <h2>Why It Matters</h2>
+                <p>Air pollution is the silent crisis of our generation. By understanding the invisible gases around us, we can make visible changes to our habits.</p>
+                <div class="stats-row">
+                    <div class="stat-box"><h3>40%</h3><p>Reduction needed by 2030</p></div>
+                    <div class="stat-box"><h3>9/10</h3><p>Cities face poor air quality</p></div>
+                </div>
+            </div>
+            <div class="image-content hidden">
+                <img src="https://images.unsplash.com/photo-1523293836414-f04e712e1f3b?auto=format&fit=crop&w=800&q=80" alt="Industrial Smoke">
+            </div>
+        </div>
+    </section>
+
+    <section class="nature-break">
+        <div class="overlay-dark"></div>
+        <div class="container quote-content hidden">
+            <h2>"The Earth is what we all have in common."</h2>
+            <p>- Wendell Berry</p>
+        </div>
+    </section>
+
+    <section id="aqi-map" class="section-padding">
+        <div class="container">
+            <h2 class="section-title hidden">Live Pollution Heatmap</h2>
+            <p class="section-desc hidden">Real-time satellite visualization of PM 2.5 concentration flow.</p>
+            <div class="map-frame hidden">
+                <iframe width="100%" height="500" src="https://embed.windy.com/embed2.html?lat=22.593&lon=78.962&detailLat=22.593&detailLon=78.962&width=650&height=450&zoom=5&level=surface&overlay=pm2.5&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="section-padding">
+        <div class="container">
+            <h2 class="section-title hidden" style="color:#fff !important; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">Calculate Your Impact</h2>
+            
+            <div class="glass-dashboard hidden">
+                <div class="glass-form">
+                    <h3><i class="fas fa-sliders-h"></i> Adjust Your Lifestyle</h3>
+                    
+                    <div class="slider-group">
+                        <div class="label-flex"><label><i class="fas fa-car"></i> Car Travel</label><span id="km-val">0 km</span></div>
+                        <input type="range" id="km-range" min="0" max="100" value="0" oninput="realTimeCalc()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="label-flex"><label><i class="fas fa-bolt"></i> Electricity</label><span id="elec-val">0 kWh</span></div>
+                        <input type="range" id="elec-range" min="0" max="50" value="0" oninput="realTimeCalc()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="label-flex"><label><i class="fas fa-trash"></i> Waste</label><span id="waste-val">0 kg</span></div>
+                        <input type="range" id="waste-range" min="0" max="10" value="0" oninput="realTimeCalc()">
+                    </div>
+                </div>
+
+                <div class="glass-result">
+                    <h4>Daily Footprint</h4>
+                    <div class="glow-ring" id="result-ring">
+                        <span id="score-number">0.0</span>
+                        <small>kg CO2</small>
+                    </div>
+                    <p id="feedback-text">Drag the sliders to see your impact.</p>
+                    
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i> <span id="tip-text">Start sliding for tips!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>EcoTrack</h3>
+                <p>Empowering communities with real-time data.</p>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 EcoTrack College Project.</p></div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

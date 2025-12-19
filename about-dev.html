@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Dev & Guide | EcoTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Specific Styles for About Page */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .step-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.9); }
+        
+        .step-icon {
+            width: 70px; height: 70px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(45, 106, 79, 0.3);
+        }
+
+        .dev-profile {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        
+        .dev-avatar {
+            font-size: 8rem;
+            color: var(--accent);
+        }
+
+        .tech-stack span {
+            display: inline-block;
+            background: #e8f5e9;
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Adjust hero for inner page */
+        .inner-hero {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            border-radius: 0 0 60px 60px;
+            margin-bottom: 40px;
+        }
+
+        @media(max-width: 768px) {
+            .dev-profile { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="index.html" class="logo"><i class="fas fa-leaf"></i> EcoTrack</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-dev.html" style="color:white;">About Dev</a></li>
+                <li><a href="index.html#aqi-map">Live Map</a></li>
+                <li><a href="index.html#contact" class="btn-donate">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="inner-hero">
+        <div class="container">
+            <h1 style="font-size: 3rem; font-weight: 700;">About the Developer</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 10px;">Building tools for a sustainable future.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">How to Use EcoTrack</div>
+            <p class="section-desc">A simple guide to navigating our environmental monitoring tools.</p>
+            
+            <div class="guide-grid">
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-search-location"></i></div>
+                    <h3>1. Select City</h3>
+                    <p>Use the dropdown menu on the Home page to choose a city (e.g., Delhi, Mumbai). The dashboard will instantly update with real-time pollution data.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-globe-asia"></i></div>
+                    <h3>2. View Heatmap</h3>
+                    <p>Scroll down to the "Live Map" section. This interactive satellite map visualizes PM 2.5 particle movement across the region.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>3. Check Impact</h3>
+                    <p>Use the "Calculator" section sliders to input your daily travel and electricity usage. We'll estimate your daily carbon footprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="margin-bottom: 60px;">
+        <div class="container">
+            <h2 class="section-title">Project Details</h2>
+            
+            <div class="dev-profile">
+                <div class="dev-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="dev-info">
+                    <h3 style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;">EcoTrack Project</h3>
+                    <p style="line-height: 1.6; color: #555;">
+                        This website was developed as part of a college initiative to raise awareness about air quality and environmental sustainability. The goal is to make complex environmental data accessible and understandable for everyone.
+                    </p>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4 style="margin-bottom: 10px;">Tech Stack Used:</h4>
+                        <div class="tech-stack">
+                            <span>HTML5</span>
+                            <span>CSS3 (Custom)</span>
+                            <span>JavaScript (ES6)</span>
+                            <span>OpenWeather API</span>
+                            <span>Windy Maps API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>EcoTrack</h3>
+                <p>Designed with <i class="fas fa-heart" style="color:#e74c3c;"></i> for the planet.</p>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 EcoTrack College Project.</p></div>
+        </div>
+    </footer>
+
+</body>
+</html>

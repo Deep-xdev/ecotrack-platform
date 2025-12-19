@@ -1,0 +1,183 @@
+/* --- 1. Custom Scrollbar --- */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #2d6a4f; border-radius: 6px; border: 3px solid #f1f1f1; }
+::-webkit-scrollbar-thumb:hover { background: #52b788; }
+
+/* --- Global Variables --- */
+:root {
+    --primary: #2d6a4f;
+    --accent: #52b788;
+    --dark: #1b4332;
+    --light: #d8f3dc;
+    --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+/* --- BACKGROUND COLOR UPDATE --- */
+body { 
+    background: #E3EFD3; /* New Pastel Green Background */
+    color: #333; 
+    overflow-x: hidden; 
+    scroll-behavior: smooth; 
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* --- Animations --- */
+.hidden { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+.show { opacity: 1; transform: translateY(0); }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* --- Navigation --- */
+.navbar { padding: 1rem 0; background: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 1px; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: var(--white); }
+.btn-donate { background: var(--white); color: var(--primary) !important; padding: 0.6rem 1.5rem; border-radius: 30px; font-weight: 600; }
+.btn-donate:hover { background: var(--accent); color: var(--white) !important; }
+
+/* --- Hero (CURVED BOTTOM EDGE) --- */
+.hero {
+    min-height: 110vh; 
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80');
+    background-attachment: fixed; background-size: cover; background-position: center; position: relative;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding-top: 80px;
+    
+    /* Adds the curve to the bottom of the hero section */
+    border-radius: 0 0 60px 60px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); border-radius: 0 0 60px 60px; }
+.hero-content { position: relative; z-index: 2; max-width: 900px; width: 100%; }
+.hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.4); font-weight: 700; }
+
+/* Dropdown */
+.search-box { margin-bottom: 2rem; position: relative; display: inline-block; width: 100%; max-width: 400px; }
+.search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); z-index: 10; }
+.search-box select { width: 100%; padding: 15px 15px 15px 45px; border-radius: 30px; border: none; font-size: 1.1rem; color: var(--dark); cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); appearance: none; }
+.search-box select:focus { outline: none; }
+
+/* AQI Card */
+.aqi-widget {
+    background: rgba(255, 255, 255, 0.4); /* Made slightly more opaque for the new bg */
+    backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.5);
+    padding: 2rem; border-radius: 30px; margin-bottom: 2rem; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: all 0.5s ease; transform-style: preserve-3d;
+}
+.aqi-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; transform: translateZ(20px); }
+.live-badge { background: red; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; animation: pulse 2s infinite; }
+.aqi-score { font-size: 4.5rem; font-weight: 700; line-height: 1; margin: 10px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.2); transform: translateZ(30px); }
+.aqi-status { font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #2d6a4f; transform: translateZ(20px); }
+
+/* Pollutant Grid */
+.pollutant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 1rem; }
+.gas-card {
+    background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 20px; text-align: center;
+    border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s; transform-style: preserve-3d;
+}
+.gas-card:hover { transform: translateY(-5px); background: rgba(0, 0, 0, 0.8); }
+.gas-card h4 { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; transform: translateZ(20px); }
+.gas-card span { font-size: 1.4rem; font-weight: 700; color: var(--white); transform: translateZ(30px); }
+.gas-card small { font-size: 0.7rem; color: #ccc; display: block; transform: translateZ(20px); }
+
+/* Sections */
+.section-padding { padding: 5rem 0; }
+.section-title { text-align: center; margin-bottom: 1rem; font-size: 2.2rem; color: var(--primary); }
+.section-desc { text-align: center; max-width: 700px; margin: 0 auto 3rem auto; color: #555; }
+.split-layout { display: flex; align-items: center; gap: 3rem; }
+.split-layout > div { flex: 1; }
+.image-content img { width: 100%; border-radius: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.stats-row { display: flex; gap: 2rem; margin-top: 2rem; }
+.stat-box h3 { font-size: 2rem; color: var(--primary); }
+
+/* Nature Break (CURVED EDGES) */
+.nature-break {
+    height: 60vh;
+    background: url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1920&q=80');
+    background-attachment: fixed; background-size: cover; background-position: center; position: relative;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+    
+    /* Curved edges for this section */
+    border-radius: 40px;
+    margin: 40px 20px; /* Adds space around so curves are visible */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); border-radius: 40px; }
+.quote-content { position: relative; z-index: 2; }
+.nature-break h2 { font-size: 3rem; font-weight: 300; font-style: italic; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* Map */
+.map-frame { border-radius: 30px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 5px solid white; background: white; height: 60vh; min-height: 400px; }
+.map-frame iframe { display: block; height: 100%; width: 100%; }
+
+/* --- CALCULATOR (CURVED EDGES) --- */
+#calculator {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80');
+    background-attachment: fixed; background-size: cover; background-position: center; color: white;
+    
+    /* Curved edges */
+    border-radius: 40px;
+    margin: 40px 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.glass-dashboard {
+    display: flex; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 25px; overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5); color: white;
+}
+.glass-form { flex: 3; padding: 3rem; border-right: 1px solid rgba(255,255,255,0.1); }
+.glass-result { flex: 2; padding: 3rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); text-align: center; }
+
+/* Sliders */
+.slider-group { margin-bottom: 2.5rem; }
+.label-flex { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-weight: 500; }
+input[type=range] { width: 100%; -webkit-appearance: none; height: 8px; border-radius: 5px; background: rgba(255,255,255,0.2); outline: none; transition: 0.3s; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5); border: 2px solid white; transition: transform 0.2s; }
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); background: #fff; }
+
+/* Glowing Ring */
+.glow-ring {
+    width: 180px; height: 180px; border-radius: 50%;
+    border: 8px solid rgba(255,255,255,0.1); border-top: 8px solid var(--accent);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    margin: 1.5rem 0; box-shadow: 0 0 30px rgba(82, 183, 136, 0.3); transition: all 0.4s ease;
+}
+.glow-ring span { font-size: 3.5rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.glass-result h4 { letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; opacity: 0.8; }
+.footer { background: var(--dark); color: #aaa; padding: 3rem 0; text-align: center; }
+
+/* NEW: TIP BOX STYLING */
+.tip-box {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.15);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+}
+
+/* Typewriter - Modified (No Animation, No Cursor) */
+.typing-text {
+    display: inline-block;
+    max-width: 100%;
+}
+
+@media(max-width: 768px) {
+    .nav-links { display: none; }
+    .split-layout { flex-direction: column; }
+    .pollutant-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 2rem; white-space: normal; }
+    .glass-dashboard { flex-direction: column; }
+    .glass-form { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    
+    /* Adjust curves for mobile */
+    .hero { border-radius: 0 0 30px 30px; }
+    .nature-break, #calculator { margin: 20px 10px; border-radius: 20px; }
+}
